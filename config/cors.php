@@ -19,7 +19,8 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],
+    // localhost:5173 is Vite’s default dev server port for React, zato smo ga tu dodali
+    'allowed_origins' => ['http://localhost:5173'],
 
     'allowed_origins_patterns' => [],
 
@@ -29,6 +30,7 @@ return [
 
     'max_age' => 0,
 
-    'supports_credentials' => false,
+    // Allow the frontend (on a different origin like localhost:5173) to send cookies, Authorization headers, or credentials (like tokens) to the backend. When it's true, you cannot use wildcard (*) for allowed_origins - znači treba bit "true" da bi komunicirali s frontend-om
+    'supports_credentials' => true
 
 ];

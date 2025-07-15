@@ -1,11 +1,15 @@
-import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-function App() {
+import Notes from "./pages/Notes";
+import Login from "./pages/Login";
+
+export default function App() {
   return (
-    <div className="p-10 bg-gray-200 min-h-screen">
-      <h1 className="text-4xl font-bold text-blue-600">Hello Tailwind!</h1>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Notes />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </Router>
   );
 }
-
-export default App;

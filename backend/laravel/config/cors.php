@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie'],
+    'paths' => ['api/*', 'login', 'logout', 'sanctum/csrf-cookie'],
 
     'allowed_methods' => ['*'],
 
@@ -30,7 +30,7 @@ return [
 
     'max_age' => 0,
 
-    // Allow the frontend (on a different origin like localhost:5173) to send cookies, Authorization headers, or credentials (like tokens) to the backend. When it's true, you cannot use wildcard (*) for allowed_origins - znači treba bit "true" da bi komunicirali s frontend-om
-    'supports_credentials' => true
+    // Allow the frontend (on a different origin like localhost:5173) to send cookies, Authorization headers, or credentials (like tokens) to the backend. When it's true, you cannot use wildcard (*) for allowed_origins - znači treba bit "true" da bi komunicirali s frontend-om ali treba bit false kada ne koristimo cookie nego stateless tokene, tako da ćemo stavit na false
+    'supports_credentials' => false
 
 ];

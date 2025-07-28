@@ -1,10 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
+import { useAuth } from "../context/AuthContext";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const { login } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -15,8 +17,7 @@ export default function Login() {
         password,
       });
 
-      localStorage.setItem("token", res.data.token);
-      window.location.href = "/notes"; // or navigate programmatically
+      login(res.data.token);
     } catch (err: any) {
       setError("Login failed. Idiot.");
     }

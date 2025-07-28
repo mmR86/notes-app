@@ -1,11 +1,13 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
   const isTrue =
     "text-white bg-black hover:bg-indigo-600 hover:text-white rounded-md px-3 py-2 transition-colors ease-in-out";
   const isFalse =
     "text-white hover:bg-indigo-500 hover:text-white rounded-md px-3 py-2 transition-colors ease-in-out";
+
+  const { isAuthenticated } = useAuth();
 
   return (
     <>
@@ -18,30 +20,37 @@ const Navbar = () => {
             >
               Home
             </NavLink>
-            <NavLink
-              className={({ isActive }) => (isActive ? isTrue : isFalse)}
-              to="/notes"
-            >
-              Notes
-            </NavLink>
-            <NavLink
-              className={({ isActive }) => (isActive ? isTrue : isFalse)}
-              to="/login"
-            >
-              Login
-            </NavLink>
-            <NavLink
-              className={({ isActive }) => (isActive ? isTrue : isFalse)}
-              to="/Register"
-            >
-              Register
-            </NavLink>
-            <NavLink
-              className={({ isActive }) => (isActive ? isTrue : isFalse)}
-              to="/logout"
-            >
-              Logout
-            </NavLink>
+            {!isAuthenticated ? (
+              <>
+                <NavLink
+                  className={({ isActive }) => (isActive ? isTrue : isFalse)}
+                  to="/login"
+                >
+                  Login
+                </NavLink>
+                <NavLink
+                  className={({ isActive }) => (isActive ? isTrue : isFalse)}
+                  to="/Register"
+                >
+                  Register
+                </NavLink>
+              </>
+            ) : (
+              <>
+                <NavLink
+                  className={({ isActive }) => (isActive ? isTrue : isFalse)}
+                  to="/notes"
+                >
+                  Notes
+                </NavLink>
+                <NavLink
+                  className={({ isActive }) => (isActive ? isTrue : isFalse)}
+                  to="/logout"
+                >
+                  Logout
+                </NavLink>
+              </>
+            )}
           </div>
         </div>
       </nav>
